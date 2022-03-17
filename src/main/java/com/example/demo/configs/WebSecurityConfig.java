@@ -46,9 +46,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/admin/").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/admin/").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET, "/user/").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers(HttpMethod.POST, "/admin").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/admin").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/user").hasAnyAuthority("USER", "ADMIN")
 
                 .anyRequest().authenticated()
                 .and()
@@ -59,24 +59,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
     }
 
-    // аутентификация inMemory
-//    @Bean
-//    @Override
-//    public UserDetailsService userDetailsService() {
-//
-//        return new InMemoryUserDetailsManager(
-//                User.builder()
-//                        .username("user")
-//                        .password(passwordEncoder().encode("user"))
-//                        .roles("USER")
-//                        .build(),
-//                User.builder()
-//                        .username("admin")
-//                        .password(passwordEncoder().encode("admin"))
-//                        .roles("ADMIN")
-//                        .build()
-//        );
-//    }
 
     @Bean
     protected PasswordEncoder passwordEncoder() {
